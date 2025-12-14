@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ENG0018 Conference Paper</title>
+
+    <!-- External CSS (W3Schools framework as used in labs) -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Internal CSS -->
+    <style>
+        body {
+            background-color: #FFFFFF;
+            margin-left: 50px;
+            font-family: Calibri, Arial, sans-serif;
+        }
+
+        p.ex1 {
+            margin-left: 250px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin-left: 250px;
+        }
+
+        th, td {
+            border: 1px solid #000000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    <!-- Google Charts API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+
+    <!-- University of Surrey banner -->
+    <img src="WebBanner.png" alt="University of Surrey Banner" style="width:100%;">
+
+    <!-- Module and student information -->
+    <h1><b>ENG0018 Computer Laboratory 2025/26</b></h1>
+    <h2>Student URN: XXXXXXX</h2>
+
+    <hr>
+
+    <!-- Conference paper title (TOPIC DEPENDENT) -->
+    <h2 style="font-family:Calibri;"><b>Conference paper: {{YOUR TOPIC TITLE HERE}}</b></h2>
+
+    <hr>
+
+    <!-- Table of contents -->
+    <p class="ex1">
+    <table>
+        <tr>
+            <th><h3>Table of contents</h3></th>
+        </tr>
+        <tr>
+            <td><a href="#Abstract">Abstract</a></td>
+        </tr>
+        <tr>
+            <td><a href="#Introduction">Introduction</a></td>
+        </tr>
+        <tr>
+            <td><a href="#Analysis">Analysis and Discussion</a></td>
+        </tr>
+        <tr>
+            <td><a href="#References">References</a></td>
+        </tr>
+    </table>
+    </p>
+
+    <hr>
+
+    <!-- Abstract section -->
+    <h3 id="Abstract">Abstract</h3>
+    <p class="ex1">
+        <pre>
+<!-- INSERT YOUR ABSTRACT TEXT HERE -->
+        </pre>
+    </p>
+
+    <hr>
+
+    <!-- Introduction section -->
+    <h3 id="Introduction">Introduction</h3>
+    <p class="ex1">
+        <pre id="Introduction_InText">
+<!-- INSERT YOUR INTRODUCTION TEXT HERE -->
+        </pre>
+    </p>
+
+    <hr>
+
+    <!-- Analysis and Discussion section -->
+    <h3 id="Analysis">Analysis and Discussion</h3>
+    <p class="ex1">
+        <pre id="Analysis_InText">
+<!-- INSERT YOUR ANALYSIS AND DISCUSSION TEXT HERE -->
+        </pre>
+    </p>
+
+    <hr>
+
+    <!-- Example chart section (DATA CAN BE CHANGED TO MATCH YOUR TOPIC) -->
+    <h3>Example Data Visualisation</h3>
+    <div id="chart_div" style="width: 700px; height: 400px; margin-left:250px;"></div>
+
+    <script type="text/javascript">
+        google.charts.load('current', {packages:['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Category', 'Value'],
+                ['Example A', 10],
+                ['Example B', 20],
+                ['Example C', 30]
+            ]);
+
+            var options = {
+                title: '{{CHART TITLE RELATED TO YOUR TOPIC}}',
+                hAxis: { title: 'Category' },
+                vAxis: { title: 'Value' }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <hr>
+
+    <!-- References section -->
+    <h3 id="References">References</h3>
+    <p class="ex1">
+        <pre>
+<!-- INSERT YOUR REFERENCES HERE -->
+<!-- Example: -->
+<!-- Author (Year). Title. <a href="URL">Link</a> -->
+        </pre>
+    </p>
+
+    <hr>
+
+    <!-- Word count display -->
+    <p><b>Total word count (Introduction + Analysis): </b><span id="wordCount"></span></p>
+
+    <!-- Last modified timestamp -->
+    <p><b>Last modified time:</b> <span id="lastUpdated">Loading...</span></p>
+    <button onclick="getLastUpdatedTime()">Verify Last Modified Time</button>
+
+    <script>
+        // Word count function
+        function countWords() {
+            var introText = document.getElementById('Introduction_InText').innerText || '';
+            var analysisText = document.getElementById('Analysis_InText').innerText || '';
+            var combinedText = introText + ' ' + analysisText;
+            var words = combinedText.trim().split(/\s+/);
+            document.getElementById('wordCount').innerText = words.filter(w => w.length > 0).length;
+        }
+        countWords();
+
+        // GitHub last modified time (UPDATE USERNAME & REPO NAME)
+        function getLastUpdatedTime() {
+            fetch('https://api.github.com/repos/{{GITHUB_USERNAME}}/{{REPOSITORY_NAME}}/commits')
+                .then(response => response.json())
+                .then(data => {
+                    var lastCommitDate = data[0].commit.committer.date;
+                    document.getElementById('lastUpdated').innerText = lastCommitDate;
+                })
+                .catch(error => {
+                    document.getElementById('lastUpdated').innerText = 'Error fetching time';
+                });
+        }
+        getLastUpdatedTime();
+    </script>
+
+</body>
+</html>
