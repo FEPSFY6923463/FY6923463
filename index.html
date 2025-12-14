@@ -10,45 +10,166 @@
 
     <!-- Internal CSS -->
     <style>
-        body {
-            background-color: #FFFFFF;
-            margin-left: 50px;
-            font-family: Calibri, Arial, sans-serif;
-        }
+    :root{
+        --bg1:#0b1220;
+        --bg2:#121a2b;
+        --card:#ffffff;
+        --muted:#6b7280;
+        --ink:#111827;
+        --line:#e5e7eb;
+        --accent:#2563eb;
+    }
 
-        p.ex1 {
-            margin-left: 250px;
-        }
+    /* Page background */
+    body{
+        margin:0;
+        font-family: Calibri, Arial, sans-serif;
+        color: var(--ink);
+        background: radial-gradient(1200px 600px at 20% 10%, #1f2a44 0%, transparent 60%),
+                    radial-gradient(900px 500px at 80% 20%, #163b7a 0%, transparent 55%),
+                    linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
 
-        table {
-            border-collapse: collapse;
-            width: 60%;
-            margin-left: 250px;
-        }
+    /* Wrap your content in a centered “paper” */
+    .page{
+        max-width: 1100px;
+        margin: 22px auto;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(255,255,255,0.4);
+        border-radius: 18px;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+        overflow: hidden;
+    }
 
-        th, td {
-            border: 1px solid #000000;
-            padding: 8px;
-            text-align: left;
-        }
+    /* Header area */
+    .header{
+        background: linear-gradient(90deg, rgba(37,99,235,0.12), rgba(255,255,255,0));
+        padding: 18px 22px 8px 22px;
+    }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
+    /* Banner responsive */
+    .banner{
+        width:100%;
+        height:auto;
+        display:block;
+        border-bottom: 1px solid var(--line);
+    }
+
+    /* Main content padding */
+    .content{
+        padding: 18px 26px 26px 26px;
+    }
+
+    h1, h2, h3{
+        margin: 10px 0;
+        line-height: 1.15;
+        letter-spacing: 0.2px;
+    }
+    h1{ font-size: 32px; }
+    h2{ font-size: 22px; }
+    h3{
+        font-size: 18px;
+        margin-top: 22px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+    }
+
+    hr{
+        border: none;
+        border-top: 1px solid var(--line);
+        margin: 18px 0;
+    }
+
+    /* Make your <pre> blocks read like neat report text */
+    pre{
+        white-space: pre-wrap;      /* wraps long lines */
+        word-wrap: break-word;
+        background: #f9fafb;
+        border: 1px solid var(--line);
+        padding: 14px 16px;
+        border-radius: 12px;
+        line-height: 1.45;
+        font-size: 16px;
+        margin: 10px 0 0 0;
+    }
+
+    /* Your existing indent class */
+    p.ex1{ margin-left: 0; } /* remove huge left indent for a cleaner “paper” look */
+
+    /* Tables */
+    table{
+        border-collapse: collapse;
+        width: 100%;
+        margin: 12px 0;
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    th, td{
+        border-bottom: 1px solid var(--line);
+        padding: 10px 12px;
+        text-align: left;
+    }
+    th{
+        background: #f3f4f6;
+        font-weight: 700;
+    }
+    tr:nth-child(even){ background-color: #fafafa; }
+
+    /* Links */
+    a{
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    a:hover{ text-decoration: underline; }
+
+    /* Images */
+    img{
+        max-width:100%;
+        height:auto;
+    }
+
+    /* Figure captions */
+    .caption{
+        font-size: 14px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 8px;
+    }
+
+    /* Buttons */
+    button{
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 700;
+    }
+    button:hover{ filter: brightness(0.95); }
+
+</style>
+
 
     <!-- Google Charts API -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
+<div class="page">
 
     <!-- University of Surrey banner -->
-    <img src="WebBanner2023.png" alt="Banner" width="1200" height="300">
+    <img class="banner" src="WebBanner2023.png" alt="Banner"> width="1200" height="300">
+<div class="header">
 
     <!-- Module and student information -->
     <h1><b>ENG0018 Computer Laboratory 2025/26</b></h1>
     <h2>Student URN: 6923463</h2>
+</div>
+<div class="content">
 
     <hr>
 
@@ -322,6 +443,8 @@ https://www.motorsportweek.com/2022/03/12/technical-insight-many-differences-on-
   // Run the function for specific sections and display total count when the page loads
   window.onload = displayTotalWordCount;
 </script>
+</div>
+</div>
 
 </body>
 </html>
