@@ -203,8 +203,10 @@ Aerodynamics
 
 <pre id="Analysis_InText2">
 The airflow around modern Formula One sidepods is divided between radiator cooling, underfloor venturi flow, and external bodywork, with these streams balanced to optimise cooling, drag, and downforce (Formula1.com, 2025; F1 Historian, n.d.; Motorsport Week, 2022).
+Safety
 Safety is a very important aspect of Formula One sidepods as they help to protect the driver from side impact crashes. Following high-profile accidents, Formula One regulations have increasingly focused on improving side impact protection. A major catalyst for change was Robert Kubica’s crash at the 2007 Canadian Grand Prix, which exposed weaknesses in the existing straight tube-based side impact structures when struck at an acute angle. As FIA Institute research consultant Andy Mellor explained, “We went back to basics to examine what a side impact structure really needs to do in different types of accident” (Mellor, 2013).
 The FIA implemented new side impact structures for the 2014 season because of these research results which transformed the way sidepods protect drivers. The new structures consist of laminated carbon fibre pillars designed to crush progressively under impact, rather than fracture or detach from the chassis. Unlike earlier team-specific designs, these side impact devices are now standardised components, ensuring consistent performance across all cars while still allowing teams flexibility in their integration within the sidepods. According to FIA Institute research, the redesign was intended to improve protection in impacts occurring at a wide range of angles, addressing the limitations revealed by earlier accidents (Mellor, 2013).
+Case study
 Recent Formula One seasons highlight how sidepod design influences overall car performance. Mercedes adopted a radical “zero pod” concept in 2022, featuring extremely narrow sidepods intended to reduce drag and maximise floor exposure. However, this design resulted in unstable airflow and inconsistent ground effect performance, leading the team to abandon the concept in later seasons. In contrast, Red Bull Racing employed wide, downwash-style sidepods that guide airflow towards the floor and diffuser, producing stable downforce and superior aerodynamic efficiency. This approach proved highly successful and was widely copied by rival teams (Somers, 2023).
 </pre>
 
@@ -224,7 +226,17 @@ Sidepods are a crucial component of modern Formula One cars, combining multiple 
 
 <h3 id="References">References</h3>
 <pre>
-[References unchanged – exactly as you provided]
+•	motorsportengineer.net. (n.d.). Why Sidepods Are Such An Important Feature In Formula 1. [online] Available at: https://motorsportengineer.net/why-sidepods-are-such-an-important-feature-in-formula-1/ [Accessed 3 Dec. 2025].
+•	Scarborough, C. (2019). F1 car cooling systems explained. [online] Motorsport Technology. Available at: https://motorsport.tech/formula-1/car-cooling-systems-explained [Accessed 3 Dec. 2025].
+•	motorsportengineer.net. (n.d.). Mastering The Heat: How Formula 1 Defy Overheating Challenges. [online] Available at: https://motorsportengineer.net/mastering-the-heat-how-formula-1-defy-overheating-challenges/ [Accessed 3 Dec. 2025].
+•	Opong, R. (2023). Sidepods On F1 Cars: What They Are & How They Work - FLOW RACERS. [online] Flow Racers. Available at: https://flowracers.com/blog/f1-car-sidepods/?srsltid=AfmBOoqki5ew0Z4iyxvmnyRfXwNPOkUXeoVjLAvtebXKI0DK8MCb0-mA [Accessed 3 Dec. 2025].
+•	chris@highpowermedia.com (2014). Formula One side impact structures. [online] High Power Media. Available at: https://www.highpowermedia.com/Archive/formula-one-side-impact-structures.
+•	FIA Institute (2013) New F1 side impact system. Fédération Internationale de l’Automobile. Available at: https://www.fia.com/sites/default/files/basicpage/file/FROM%20AUTO%233%20NEW%20F1%20SIDE%20IMPACT%20SYSTEM.pdf [Accessed 3 Dec. 2025].
+•	Somers, J. (2023) Understanding Red Bull’s sidepod philosophy. Racecar Engineering. Available at: https://www.racecar-engineering.com/articles/f1/understanding-red-bulls-sidepod-philosophy/ [Accessed 3 Dec. 2025].
+•	Formula1.com, 2025. Analysis: Ferrari sidepods hint at unique direction for their 2022 F1-75. Available at: https://www.formula1.com/en/latest/article/analysis-ferrari-sidepods-hint-at-unique-direction-for-f1-75.7CoDEDU1HKSZHZmv6Ri3eM [Accessed 3 Dec. 2025]
+•	F1 Historian, n.d. Formula 1 Cooling Systems Explained. Available at: https://www.f1historian.com/tech101/Formula%201%20Cooling%20Systems [Accessed 3 Dec. 2025]
+•	Motorsport Week, 2022. Technical Insight: Many differences on sidepod design. Available at: https://www.motorsportweek.com/2022/03/12/technical-insight-many-differences-on-the-sidepods-design/ [Accessed 3 Dec. 2025]
+
 </pre>
 
 <p id="totalWordCount"></p>
@@ -237,5 +249,90 @@ window.addEventListener('load',()=>{document.getElementById("totalWordCount").in
 
 </div>
 </div>
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////// Last updated timestamp ///////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+
+<div id="last-updated">Loading last update time...</div>
+
+<button onclick="verifyLastUpdatedTime()"
+        style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+</button>
+
+<script>
+    async function getLastUpdatedTime() {
+        const username = 'FEPSFY6923463';
+        const repo = 'FY6923463';
+
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status}`);
+            }
+
+            const commits = await response.json();
+
+            if (commits && commits.length > 0) {
+                const lastCommitDate = new Date(commits[0].commit.committer.date);
+                document.getElementById('last-updated').innerText =
+                    `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+            } else {
+                document.getElementById('last-updated').innerText =
+                    'No commits found in the repository.';
+            }
+
+        } catch (error) {
+            console.error(error);
+            document.getElementById('last-updated').innerText =
+                'Error fetching update time. Please check repository details.';
+        }
+    }
+
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verified from GitHub API.");
+    }
+</script>
+
+<hr>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////// Word count ///////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+
+<p id="totalWordCount"></p>
+
+<script>
+    function countWords(sectionId) {
+        const text = document.getElementById(sectionId)?.textContent || '';
+        return text.trim().split(/\s+/).filter(w => w.length > 0).length;
+    }
+
+    function displayTotalWordCount() {
+        const introCount = countWords("Introduction_InText");
+        const analysisCount =
+            countWords("Analysis_InText") + countWords("Analysis_InText2");
+
+        document.getElementById("totalWordCount").innerText =
+            `Total word count: ${introCount + analysisCount}`;
+    }
+
+    // Run BOTH features safely on page load
+    window.addEventListener('load', function () {
+        getLastUpdatedTime();
+        displayTotalWordCount();
+    });
+</script>
+
 </body>
 </html>
