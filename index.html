@@ -125,7 +125,34 @@ raise the risk of overheating. High-temperature or high-altitude circuits such a
 Sidepods also play a critical role in aerodynamics and downforce generation. Their shape is used to manipulate airflow towards the rear of the car, reducing drag and
 improving rear tyre performance. Wide sidepods can create controlled outwash that pushes turbulent air away from the rear tyres, reducing pressure build-up and 
 improving traction (Opong, 2023). Additionally, modern sidepods feature pronounced undercuts that channel high-energy airflow towards the edges of the floor. This 
-strengthens the ground-effect airflow beneath the car, enhancing diffuser efficiency and increasing downforce without a significant drag penalty.
+strengthens the ground-effect airflow beneath the car, enhancing diffuser efficiency and increasing downforce without significant drag.
+
+<div style="margin-left:250px; text-align:center;">
+    <img src="McLarenPod.jpg"
+         alt="McLaren Formula One sidepod airflow and undercut design"
+         style="width:65%; border:1px solid #000;">
+    <p style="font-size:14px;">
+        Figure 1: McLaren sidepod geometry highlighting airflow management and undercut design (The Race, 2023).
+    </p>
+</div>
+<table>
+    <tr>
+        <th>Flow Path</th>
+        <th>Approximate % of Total Airflow</th>
+    </tr>
+    <tr>
+        <td>Air into radiator inlet</td>
+        <td>30%</td>
+    </tr>
+    <tr>
+        <td>Air directed under car floor</td>
+        <td>50%</td>
+    </tr>
+    <tr>
+        <td>Air flowing around bodywork</td>
+        <td>20%</td>
+    </tr>
+</table>
 
 The airflow around modern Formula One sidepods is divided between radiator cooling, underfloor venturi flow, and external bodywork, with these streams balanced to 
 optimise cooling, drag, and downforce (Formula1.com, 2025; F1 Historian, n.d.; Motorsport Week, 2022).
@@ -139,39 +166,23 @@ Recent Formula One case studies highlight the performance implications of sidepo
 drag and maximise floor exposure. However, the design led to unstable airflow and inconsistent ground-effect performance, resulting in its abandonment. In contrast,
 Red Bull Racing adopted wide, downwash-style sidepods that consistently directed airflow towards the floor and diffuser, delivering stable downforce and superior 
 aerodynamic efficiency. This approach proved highly successful and was widely adopted by other teams (Somers, 2023).
-        </pre>
+            
+     <div style="margin-left:250px; text-align:center;">
+
+    <img src="MercedesNoPod.webp"
+         alt="Mercedes Formula One zero-sidepod concept"
+         style="width:45%; margin:10px; border:1px solid #000;">
+
+    <img src="RedBullPod.webp"
+         alt="Red Bull Racing downwash sidepod concept"
+         style="width:45%; margin:10px; border:1px solid #000;">
+
+    <p style="font-size:14px;">
+        Figure 2: Comparison of Mercedes' narrow ‘zero-pod’ concept (left) and Red Bull Racing’s wide downwash sidepod philosophy (right), illustrating contrasting aerodynamic approaches (Motorsport.com, 2022; Racecar Engineering, 2023).
     </p>
 
-    <hr>
+</div>
 
-    <!-- Example chart section (DATA CAN BE CHANGED TO MATCH YOUR TOPIC) -->
-    <h3>Example Data Visualisation</h3>
-    <div id="chart_div" style="width: 700px; height: 400px; margin-left:250px;"></div>
-
-    <script type="text/javascript">
-        google.charts.load('current', {packages:['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Category', 'Value'],
-                ['Example A', 10],
-                ['Example B', 20],
-                ['Example C', 30]
-            ]);
-
-            var options = {
-                title: 'Aerodynamic and Cooling Functions of F1 Sidepods',
-                hAxis: { title: 'Category' },
-                vAxis: { title: 'Value' }
-            };
-
-            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-    </script>
-
-    <hr>
 
     <!-- References section -->
     <h3 id="References">References</h3>
@@ -212,38 +223,87 @@ https://www.motorsportweek.com/2022/03/12/technical-insight-many-differences-on-
 
     <hr>
 
-    <!-- Word count display -->
-    <p><b>Total word count (Introduction + Analysis): </b><span id="wordCount"></span></p>
-
-    <!-- Last modified timestamp -->
-    <p><b>Last modified time:</b> <span id="lastUpdated">Loading...</span></p>
-    <button onclick="getLastUpdatedTime()">Verify Last Modified Time</button>
-
-    <script>
-        // Word count function
-        function countWords() {
-            var introText = document.getElementById('Introduction_InText').innerText || '';
-            var analysisText = document.getElementById('Analysis_InText').innerText || '';
-            var combinedText = introText + ' ' + analysisText;
-            var words = combinedText.trim().split(/\s+/);
-            document.getElementById('wordCount').innerText = words.filter(w => w.length > 0).length;
+    <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Adding last update ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+    <!-- Last commit time display -->
+<div id="last-updated">Loading last update time...</div>
+<!-- Verify Button -->
+<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+</button>
+<script>
+    async function getLastUpdatedTime() {
+        const username = 'nr0025';
+        const repo = 'FY0025';
+       
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+            }
+            const commits = await response.json();
+            if (commits && commits.length > 0) {
+                const lastCommitDate = new Date(commits[0].commit.committer.date);
+               
+                // Displaying the time on load
+                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+            } else {
+                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+            }
+        } catch (error) {
+            console.error('Error fetching the last updated time:', error);
+            document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
         }
-        countWords();
+    }
+    // Function to verify the last update time by re-fetching it from the API
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verified from GitHub API.");
+    }
+    // Initial load to display the time on page load
+    window.onload = getLastUpdatedTime;
+</script>
 
-        // GitHub last modified time (UPDATE USERNAME & REPO NAME)
-        function getLastUpdatedTime() {
-            fetch('https://api.github.com/repos/FY6923463/FEPSFY6923463/commits')
-                .then(response => response.json())
-                .then(data => {
-                    var lastCommitDate = data[0].commit.committer.date;
-                    document.getElementById('lastUpdated').innerText = lastCommitDate;
-                })
-                .catch(error => {
-                    document.getElementById('lastUpdated').innerText = 'Error fetching time';
-                });
-        }
-        getLastUpdatedTime();
-    </script>
+
+ <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- Placeholder for total word count -->
+<p id="totalWordCount"></p>
+<hr>
+<script>
+  // Function to calculate and display word count for a specified section
+  function displayWordCount(sectionId, outputId) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+    // Count the words
+    const wordCount = wordArray.length;
+    // Return the word count for summing purposes
+    return wordCount;
+  }
+  // Function to calculate and display total word count from selected sections
+  function displayTotalWordCount() {
+    // Calculate word count for each section and accumulate the total
+    const IntroductionCount = displayWordCount("Introduction_InText");
+    const AnalysisCount = displayWordCount("Analysis_InText");
+    // Calculate the sum of all selected sections
+    const totalWordCount = IntroductionCount + AnalysisCount;
+    // Display the total word count
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+  }
+  // Run the function for specific sections and display total count when the page loads
+  window.onload = displayTotalWordCount;
+</script>
 
 </body>
 </html>
